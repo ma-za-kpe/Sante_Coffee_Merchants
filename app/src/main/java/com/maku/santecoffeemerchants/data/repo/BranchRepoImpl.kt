@@ -15,11 +15,11 @@ class BranchRepoImpl(val dao: FarmerDao, val branchDao: BranchDao, val responseD
     // Observed LiveData will notify the observer when the data has changed.
 
     //start farmer
-    override suspend fun getFarmerData(): LiveData<Farmer> {
+    override suspend fun getFarmerData(): Farmer {
         return dao.getFarmerDetails()
     }
 
-    override suspend fun getFarmer(): LiveData<List<Farmer>> {
+    override suspend fun getFarmer(): List<Farmer> {
         return dao.getReminders()
     }
 

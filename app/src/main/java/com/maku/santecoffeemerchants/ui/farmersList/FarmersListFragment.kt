@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maku.santecoffeemerchants.R
 import com.maku.santecoffeemerchants.SanteCoffeeFarmers
@@ -17,12 +20,14 @@ import com.maku.santecoffeemerchants.data.local.model.NationalIdNum
 import com.maku.santecoffeemerchants.databinding.FragmentFarmersListBinding
 import com.maku.santecoffeemerchants.ui.viewmodel.MainViewModel
 import com.maku.santecoffeemerchants.ui.viewmodel.MainViewModelFactory
+import com.maku.santecoffeemerchants.utils.DialogUtils
 import com.maku.santecoffeemerchants.utils.ScopedFragment
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import timber.log.Timber
+
 
 class FarmersListFragment : ScopedFragment(), KodeinAware {
 
@@ -35,12 +40,12 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
     private var viewModel: MainViewModel? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_farmers_list, container, false
+                inflater, R.layout.fragment_farmers_list, container, false
         )
         binding.lifecycleOwner = requireActivity()
         return binding.root
@@ -59,22 +64,23 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
         val farmer = viewModel?.farmers?.await()
         val x = viewModel?.farmer?.await()
 
-        farmer?.observe(viewLifecycleOwner, { f ->
-            Timber.d("farmer x " + f)
-        })
+        Timber.d("farmer a " + farmer)
+        Timber.d("farmer b " + x)
 
-        farmer?.observe(viewLifecycleOwner, { f ->
-            // initially, the room db is empty, so handle that state.
-            if(f == null){
-                Timber.d("data is null AF")
-                binding.empty.visibility = View.VISIBLE
-                binding.empty.text = "Empty List , Please Add data..."
-            } else {
-                val list = arrayListOf(f)
-                Timber.d("all farmers %s", list.size)
-                renderList(list)
-            }
-        })
+        renderList(x as ArrayList<Farmer>)
+
+//        x?.observe(viewLifecycleOwner) { f ->
+//            // initially, the room db is empty, so handle that state.
+//            if (f == null) {
+//                Timber.d("data is null AF")
+//                binding.empty.visibility = View.VISIBLE
+//                binding.empty.text = "Empty List , Please Add data..."
+//            } else {
+//                val list = arrayListOf(f)
+//                Timber.d("all farmers %s", list.size)
+//                renderList(list)
+//            }
+//        }
 
     }
 
@@ -83,7 +89,7 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
         Timber.d("farmer not nulllllllllll %s", data)
 
                     if ( binding.farmerList.adapter?.itemCount == 0) {
-                        setRecyclerData(data )
+                        setRecyclerData(data)
                     } else { //when load more
                         if (binding.farmerList.adapter == null) { //after load more
                             setRecyclerData(data)
@@ -95,8 +101,24 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
 
     private fun setRecyclerData(photos: ArrayList<Farmer>) {
         with(binding.farmerList) {
-            adapter = FarmersAdapter(photos)
+            adapter = FarmersAdapter(photos,  {item ->
+                callFarmerNow(item)
+            }, {
+                details ->
+                detailsOfFarmer(details)
+            })
         }
+    }
+
+    private fun detailsOfFarmer(details: Any) {
+        //navigate to details screen
+        Timber.d("details " + details.toString())
+        val bundle = bundleOf("details" to details.toString())
+        view?.findNavController()?.navigate(R.id.action_farmersListFragment_to_farmerDetailsFragment, bundle)
+    }
+
+    private fun callFarmerNow(item: Any) {
+        DialogUtils.callFarmer(requireContext(), item.toString())
     }
 
     private fun initViewModels() {
@@ -128,19 +150,19 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
 
         // Create an alert builder
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Name")
+        builder.setTitle("Capture Farmer Data")
 
         // set the custom layout
         val customLayout: View = layoutInflater
             .inflate(
-                R.layout.enter_farmer_view,
-                null
+                    R.layout.enter_farmer_view,
+                    null
             )
         builder.setView(customLayout)
 
         // add a button
         builder.setPositiveButton(
-            "OK"
+                "OK"
         ) { dialog, which -> // send data from the
                 // AlertDialog to the Activity
             // TODO: 11/28/2020 : find a better way of doing this ... data-binding
@@ -156,18 +178,20 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
             val surname = customLayout.findViewById<EditText>(R.id.surname)
             val phone = customLayout.findViewById<EditText>(R.id.phone)
 
+            // TODO: 11/29/2020 : find a way to handle empty editext NPE(error)... also different validations like the phone validation etc.
+
             sendDialogDataToDB(
-                name.text.toString(),
-                dob.text.toString(),
-                cardno.text.toString(),
-                date.text.toString(),
-                dobb.text.toString(),
-                givenname.text.toString(),
-                ID.text.toString(),
-                nationality.text.toString(),
-                sex.text.toString(),
-                surname.text.toString(),
-                phone.text.toString()
+                    name.text.toString(),
+                    dob.text.toString(),
+                    cardno.text.toString(),
+                    date.text.toString(),
+                    dobb.text.toString(),
+                    givenname.text.toString(),
+                    ID.text.toString(),
+                    nationality.text.toString(),
+                    sex.text.toString(),
+                    surname.text.toString(),
+                    phone.text.toString()
             )
             }
 
@@ -178,28 +202,28 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
     }
 
     private fun sendDialogDataToDB(
-        name: String,
-        dob: String,
-        cardno: String,
-        date: String,
-        dobb: String,
-        givenname: String,
-        id: String,
-        nationality: String,
-        sex: String,
-        surname: String,
-        phone: String
+            name: String,
+            dob: String,
+            cardno: String,
+            date: String,
+            dobb: String,
+            givenname: String,
+            id: String,
+            nationality: String,
+            sex: String,
+            surname: String,
+            phone: String
     ) = launch {
         val birthCertificate = BirthCertificate(dob, name)
         val nationalIdNum = NationalIdNum(
-            cardno,
-            date,
-            dobb,
-            givenname,
-            id,
-            nationality,
-            sex,
-            surname
+                cardno,
+                date,
+                dobb,
+                givenname,
+                id,
+                nationality,
+                sex,
+                surname
         )
 
         val farmer = Farmer(birthCertificate, nationalIdNum, phone)

@@ -9,5 +9,26 @@
         android:id="@+id/farmersListFragment"
         android:name="com.maku.santecoffeemerchants.ui.farmersList.FarmersListFragment"
         android:label="Farmers list"
-        tools:layout="@layout/fragment_farmers_list" />
+        tools:layout="@layout/fragment_farmers_list" >
+        <action
+            android:id="@+id/action_farmersListFragment_to_farmerDetailsFragment"
+            app:destination="@id/farmerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/farmerDetailsFragment"
+        android:name="com.maku.santecoffeemerchants.ui.framer_details.FarmerDetailsFragment"
+        android:label="farmer details"
+        tools:layout="@layout/fragment_farmer_details" >
+        <action
+            android:id="@+id/action_farmerDetailsFragment_to_farmersListFragment"
+            app:destination="@id/farmersListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="details"
+            app:argType="string"
+            android:defaultValue="details" />
+    </fragment>
 </navigation>

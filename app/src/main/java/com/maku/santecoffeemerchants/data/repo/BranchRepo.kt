@@ -9,8 +9,8 @@ interface BranchRepo {
         // suspend enables us to call the function from a coroutine
 
         //farmer
-        suspend fun getFarmerData(): LiveData<Farmer>
-        suspend fun getFarmer(): LiveData<List<Farmer>>
+        suspend fun getFarmerData(): Farmer
+        suspend fun getFarmer(): List<Farmer>
         suspend fun insertSingleFarmer(farmer: Farmer)
 
         //branch

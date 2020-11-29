@@ -17,10 +17,10 @@ interface FarmerDao {
 //    fun insert(farmer: Farmer)
 
     @Query("SELECT * from farmer_details")
-    fun getReminders(): LiveData<List<Farmer>>
+    fun getReminders(): List<Farmer>
 
     @Query("select * from farmer_details")
-    fun getFarmerDetails(): LiveData<Farmer>
+    fun getFarmerDetails(): Farmer
 
     /*
   * Insert the object in database

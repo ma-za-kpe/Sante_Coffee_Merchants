@@ -8,7 +8,10 @@ import com.maku.santecoffeemerchants.data.local.entities.Farmer
 import com.maku.santecoffeemerchants.databinding.FarmerRowBinding
 import timber.log.Timber
 
-class FarmersAdapter(private val farmerList: ArrayList<Farmer>) :
+class FarmersAdapter(
+        private val farmerList: ArrayList<Farmer>,
+        val callFarmer : (Any) -> Unit,
+        val detailsOfFarmer : (Any) -> Unit) :
     RecyclerView.Adapter<FarmersAdapter.FarmerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FarmerViewHolder {
@@ -20,14 +23,14 @@ class FarmersAdapter(private val farmerList: ArrayList<Farmer>) :
     override fun getItemCount() = farmerList.size
 
     override fun onBindViewHolder(holder: FarmerViewHolder, position: Int) {
-        holder.bind(farmerList[position])
+        holder.bind(farmerList[position], callFarmer, detailsOfFarmer)
     }
 
     class FarmerViewHolder(rowBinding: FarmerRowBinding) :
         RecyclerView.ViewHolder(rowBinding.root) {
         private val binding = rowBinding
 
-        fun bind(farmer: Farmer) {
+        fun bind(farmer: Farmer, callFarmer: (Any) -> Unit, detailsOfFarmer: (Any) -> Unit) {
             Timber.d("phone ${farmer}")
             binding.farmerBinding = farmer
             binding.editTextTextBrandName.text = farmer.nationalIdNum.givenname
@@ -35,14 +38,22 @@ class FarmersAdapter(private val farmerList: ArrayList<Farmer>) :
             binding.editTextTextBrandName.setOnClickListener { view ->
                 Timber.d("phone has been clicked")
 
+                //send data to new details screen
+                detailsOfFarmer(farmer)
+
                 //pass the 'context' here
-                val alertDialog = AlertDialog.Builder(view.context)
-                alertDialog.setTitle("Rover Name: "+ farmer.nationalIdNum.givenname)
-                alertDialog.setPositiveButton("Close") { dialog, which -> dialog.cancel() }
+//                val alertDialog = AlertDialog.Builder(view.context)
+//                alertDialog.setTitle("Rover Name: "+ farmer.nationalIdNum.givenname)
+//                alertDialog.setPositiveButton("Close") { dialog, which -> dialog.cancel() }
+//
+//                val dialog = alertDialog.create()
+//                dialog.show()
 
-                val dialog = alertDialog.create()
-                dialog.show()
+            }
 
+            binding.callImage.setOnClickListener {
+                val phone = farmer.phoneNumber
+                callFarmer(phone)
             }
         }
     }
