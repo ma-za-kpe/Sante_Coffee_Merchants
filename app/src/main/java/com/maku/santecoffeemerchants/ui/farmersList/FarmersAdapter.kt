@@ -1,6 +1,5 @@
 package com.maku.santecoffeemerchants.ui.farmersList
 
-import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,8 +9,8 @@ import timber.log.Timber
 
 class FarmersAdapter(
         private val farmerList: ArrayList<Farmer>,
-        val callFarmer : (Any) -> Unit,
-        val detailsOfFarmer : (Any) -> Unit) :
+        val callFarmer: (Any) -> Unit,
+        val detailsOfFarmer: (Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any?) -> Unit) :
     RecyclerView.Adapter<FarmersAdapter.FarmerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FarmerViewHolder {
@@ -30,7 +29,7 @@ class FarmersAdapter(
         RecyclerView.ViewHolder(rowBinding.root) {
         private val binding = rowBinding
 
-        fun bind(farmer: Farmer, callFarmer: (Any) -> Unit, detailsOfFarmer: (Any) -> Unit) {
+        fun bind(farmer: Farmer, callFarmer: (Any) -> Unit, detailsOfFarmer: (Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any?) -> Unit) {
             Timber.d("phone ${farmer}")
             binding.farmerBinding = farmer
             binding.editTextTextBrandName.text = farmer.nationalIdNum.givenname
@@ -39,7 +38,7 @@ class FarmersAdapter(
                 Timber.d("phone has been clicked")
 
                 //send data to new details screen
-                detailsOfFarmer(farmer)
+                detailsOfFarmer(farmer.birthCertificate.name,farmer.birthCertificate.dob, farmer.nationalIdNum.cardNo, farmer.nationalIdNum.dateOfExpiry, farmer.nationalIdNum.dob, farmer.nationalIdNum.givenname, farmer.nationalIdNum.iDNum, farmer.nationalIdNum.nationality, farmer.nationalIdNum.sex, farmer.nationalIdNum.surname, farmer.phoneNumber)
 
                 //pass the 'context' here
 //                val alertDialog = AlertDialog.Builder(view.context)

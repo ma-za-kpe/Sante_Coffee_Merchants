@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -103,17 +102,32 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
         with(binding.farmerList) {
             adapter = FarmersAdapter(photos,  {item ->
                 callFarmerNow(item)
-            }, {
-                details ->
-                detailsOfFarmer(details)
-            })
+            }
+//                    {
+//                details -> detailsOfFarmer(nom, dofb, cardnumber, expirydate, dofbb, givennname,idd, nation, seex, surrname, phonenumber)
+//            }
+            ) { nom, dofb, cardnumber, expirydate, dofbb, givennname, idd, nation, seex, surrname, phonenumber ->
+                detailsOfFarmer(nom, dofb, cardnumber, expirydate, dofbb, givennname, idd, nation, seex, surrname, phonenumber)
+            }
         }
     }
 
-    private fun detailsOfFarmer(details: Any) {
+    private fun detailsOfFarmer(nom: Any, dofb: Any, cardnumber: Any, expirydate: Any, dofbb: Any, givennname: Any, idd: Any, nation: Any, seex: Any, surrname: Any, phonenumber: Any?) {
         //navigate to details screen
-        Timber.d("details " + details.toString())
-        val bundle = bundleOf("details" to details.toString())
+        val f = ArrayList<String>()
+        f.add(nom as String)
+        f.add(dofb as String)
+        f.add(cardnumber as String)
+        f.add(expirydate as String)
+        f.add(dofbb as String)
+        f.add(givennname as String)
+        f.add(idd as String)
+        f.add(nation as String)
+        f.add(seex as String)
+        f.add(surrname as String)
+        f.add(phonenumber as String)
+        Timber.d("details " + f.toString())
+        val bundle = bundleOf("details" to f.toString())
         view?.findNavController()?.navigate(R.id.action_farmersListFragment_to_farmerDetailsFragment, bundle)
     }
 
