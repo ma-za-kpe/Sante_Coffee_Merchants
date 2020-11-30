@@ -41,6 +41,7 @@
             app:layout_constraintTop_toBottomOf="@+id/delete">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/namee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -60,6 +61,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/doob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -90,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ni">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cardnoo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -109,6 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardno">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/datee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
@@ -128,6 +132,7 @@
             app:layout_constraintTop_toBottomOf="@+id/date">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/doobb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -147,6 +152,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dobb">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/givennamme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -166,6 +172,7 @@
             app:layout_constraintTop_toBottomOf="@+id/givenname">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/IDd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -185,6 +192,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ID">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nationalityy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -204,6 +212,7 @@
             app:layout_constraintTop_toBottomOf="@+id/nationality">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/sexxx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -223,6 +232,7 @@
             app:layout_constraintTop_toBottomOf="@+id/sex">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/surnamme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />
@@ -242,6 +252,7 @@
             app:layout_constraintTop_toBottomOf="@+id/surname">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phonne"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName" />

@@ -14,4 +14,6 @@
     <string name="sex">sex</string>
     <string name="surname">surname</string>
     <string name="phone">phone</string>
+    <string name="welcome_to_the_sante_merchant_app">Welcome to the Sante\n Merchant App</string>
+    <string name="branchname">Enter Branch Name</string>
 </resources>

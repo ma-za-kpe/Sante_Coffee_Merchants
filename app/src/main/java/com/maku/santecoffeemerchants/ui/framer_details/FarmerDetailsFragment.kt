@@ -32,7 +32,7 @@ class FarmerDetailsFragment : Fragment() {
         val list = arrayListOf(farmer)
         val elephantList: MutableList<List<String>> = Arrays.asList(farmer?.split(","))
 
-        // TODO: 11/30/2020 : code clean up required here too.. 
+        // TODO: 11/30/2020 : code clean up required here too..
         Timber.d("farmerrr " + elephantList)
         for (i in 0 until elephantList.size) {
             Timber.d("farmer list  " + elephantList[0][0])

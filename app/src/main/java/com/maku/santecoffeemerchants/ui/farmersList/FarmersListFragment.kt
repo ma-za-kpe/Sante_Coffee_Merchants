@@ -180,19 +180,19 @@ class FarmersListFragment : ScopedFragment(), KodeinAware {
         ) { dialog, which -> // send data from the
                 // AlertDialog to the Activity
             // TODO: 11/28/2020 : find a better way of doing this ... data-binding
-            val name = customLayout.findViewById<EditText>(R.id.name)
-            val dob = customLayout.findViewById<EditText>(R.id.dob)
-            val cardno = customLayout.findViewById<EditText>(R.id.cardno)
-            val date = customLayout.findViewById<EditText>(R.id.date)
-            val dobb = customLayout.findViewById<EditText>(R.id.dobb)
-            val givenname = customLayout.findViewById<EditText>(R.id.givenname)
-            val ID = customLayout.findViewById<EditText>(R.id.ID)
-            val nationality = customLayout.findViewById<EditText>(R.id.nationality)
-            val sex = customLayout.findViewById<EditText>(R.id.sex)
-            val surname = customLayout.findViewById<EditText>(R.id.surname)
-            val phone = customLayout.findViewById<EditText>(R.id.phone)
+            val name = customLayout.findViewById<EditText>(R.id.namee)
+            val dob = customLayout.findViewById<EditText>(R.id.doob)
+            val cardno = customLayout.findViewById<EditText>(R.id.cardnoo)
+            val date = customLayout.findViewById<EditText>(R.id.datee)
+            val dobb = customLayout.findViewById<EditText>(R.id.doobb)
+            val givenname = customLayout.findViewById<EditText>(R.id.givennamme)
+            val ID = customLayout.findViewById<EditText>(R.id.IDd)
+            val nationality = customLayout.findViewById<EditText>(R.id.nationalityy)
+            val sex = customLayout.findViewById<EditText>(R.id.sexxx)
+            val surname = customLayout.findViewById<EditText>(R.id.surnamme)
+            val phone = customLayout.findViewById<EditText>(R.id.phonne)
 
-            // TODO: 11/29/2020 : find a way to handle empty editext NPE(error)... also different validations like the phone validation etc.
+            // TODO: 11/29/2020 : find a way to handle empty editext NPE(error)... also different validations like the phone, date validation etc.
 
             sendDialogDataToDB(
                     name.text.toString(),

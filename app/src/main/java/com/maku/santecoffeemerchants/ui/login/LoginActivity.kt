@@ -157,7 +157,7 @@ class LoginActivity : AppCompatActivity(), KodeinAware {
         val lastName = account.displayName.toString()
         val email = account.email
         val photoUrl = account.photoUrl.toString()
-        brandName = binding.editTextTextBrandName.text.toString()
+        brandName = binding.branch.text.toString()
         Timber.d("user data $firstName$brandName")
 
         //send datails to next screen or save in shared preferences
