@@ -4,6 +4,53 @@
 ## About
 An easy to use mobile application for the regional managers at sante merchants.
 
+## EXAMPLE JSON
+`{
+     "Branch": {
+         "id":"BRNCH001",
+         "name":"BRANCH01",
+         "manager":{
+             "name": "maku"
+         },
+         "farmers": [
+             {
+                 "phone-number": "+25677823456",
+                 "birth-certificate":{
+                     "name": "popo",
+                     "dob": "11/11/1992"
+                 },
+                 "national-id-num":{
+                     "surname": "popo",
+                     "givenname": "popopo",
+                     "nationality": "ugandan",
+                     "sex": "F",
+                     "dob": "11/11/1992",
+                     "card-no": "000999888",
+                     "date-of-expiry": "12/11/2028",
+                     "ID-num": "CHHHTTTYTYS&&&BS777"
+                 }
+             }, {
+                 "farmer_id":"FRMR002",
+                 "phone-number": "+25677823456",
+                 "birth-certificate":{
+                     "name": "popo",
+                     "dob": "11/11/1992"
+                 },
+                 "national-id-num":{
+                     "surname": "popo",
+                     "givenname": "popopo",
+                     "nationality": "ugandan",
+                     "sex": "F",
+                     "dob": "11/11/1992",
+                     "card-no": "000999888",
+                     "date-of-expiry": "12/11/2028",
+                     "ID-num": "CHHHTTTYTYS&&&BS777"
+                 }
+             }
+         ]
+         }
+ }`
+
 ## How to use this project from your laptop
 - clone this repo
 - Build and run the project.
