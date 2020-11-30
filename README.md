@@ -52,7 +52,7 @@ An easy to use mobile application for the regional managers at sante merchants.
  }`
 
 ## How to use this project from your phone
-- download from this link (apk.)[]
+- download from this link [apk](https://drive.google.com/file/d/1Z20djYm3wUTAh16ytFD5gySrOhZxdNvN/view?usp=sharing)
 - You will have to restart the app after adding a new farmer, MINOR LIVE DATA BUG.
 
 ## How to use this project from your laptop
