@@ -51,6 +51,10 @@ An easy to use mobile application for the regional managers at sante merchants.
          }
  }`
 
+## How to use this project from your phone
+- download from this link (apk.)[]
+- You will have to restart the app after adding a new farmer, MINOR LIVE DATA BUG.
+
 ## How to use this project from your laptop
 - clone this repo
 - Build and run the project.
@@ -60,15 +64,11 @@ An easy to use mobile application for the regional managers at sante merchants.
 - Create a new firebase account, add authentication to your project, replace the google services json file with you own. 
 - [HOw TO GUIDE ...](https://firebase.google.com/docs/auth/android/google-signin)
 
-
-
 ## TODO
 - optimisations and code clean up(code smells)
 - update feature
 - Unit testing
 - fix minor bug with live data in Farmer Doa.
-
-`hhshshs`
 
 ## Contact
 shoot me an email at:- [maku](makpalyy@gmail.com)
