@@ -16,7 +16,12 @@ An easy to use mobile application for the regional managers at sante merchants.
 
 
 ## TODO
-- 
+- optimisations and code clean up(code smells)
+- update feature
+- Unit testing
+- fix minor bug with live data in Farmer Doa.
+
+`hhshshs`
 
 ## Contact
 shoot me an email at:- [maku](makpalyy@gmail.com)
